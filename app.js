@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const routes = require('./routes/index');
-const paginate = require('express-paginate');
 const books = require('./routes/books');
 const app = express();
 const Book=require('./models').Book;

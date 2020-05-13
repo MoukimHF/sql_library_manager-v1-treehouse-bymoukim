@@ -6,8 +6,6 @@ var express = require('express');
 
 var router = express.Router();
 
-var paginate = require('express-paginate');
-
 var Sequelize = require('sequelize');
 
 var Book = require('../models').Book;

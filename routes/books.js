@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const paginate = require('express-paginate');
 const Sequelize = require('sequelize');
 const Book=require('../models').Book;
 /* Handler function to wrap each route. */

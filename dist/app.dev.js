@@ -14,8 +14,6 @@ var logger = require('morgan');
 
 var routes = require('./routes/index');
 
-var paginate = require('express-paginate');
-
 var books = require('./routes/books');
 
 var app = express();
