@@ -329,9 +329,12 @@ router.post("/search", asyncHandler(function _callee9(req, res) {
           Op = Sequelize.Op;
           _context9.next = 5;
           return regeneratorRuntime.awrap(Book.findAll({
-            where: {
-              title: _defineProperty({}, Op.startsWith, query)
-            }
+            where: _defineProperty({}, Op.or, {
+              title: _defineProperty({}, Op.startsWith, query),
+              author: _defineProperty({}, Op.startsWith, query),
+              genre: _defineProperty({}, Op.startsWith, query),
+              year: _defineProperty({}, Op.startsWith, query)
+            })
           }));
 
         case 5:

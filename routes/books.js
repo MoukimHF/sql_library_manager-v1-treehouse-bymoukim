@@ -126,9 +126,21 @@ router.post("/search", asyncHandler(async(req,res)=>{
 
 const books=await Book.findAll({
   where: {
+    [Op.or]:{
    title: {
     [Op.startsWith]: query
    }
+   ,
+   author:{
+    [Op.startsWith]: query
+   },
+   genre:{
+    [Op.startsWith]: query
+   },
+   year:{
+    [Op.startsWith]: query
+   }
+  }
 }});
 if(path.includes('search') && books.length>0){
   res.render("books/index2", { books, title: "moukim's library!"});
