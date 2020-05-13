@@ -1,0 +1,6 @@
+if(errors)
+  h2.errors(style="color:red") Oops an error occurred!
+  ul.errors
+    each error in errors
+      li(style="color:rgb(235, 70, 70)")
+        =error.message

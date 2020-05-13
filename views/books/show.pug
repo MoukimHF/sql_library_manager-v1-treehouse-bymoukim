@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h2= book.title
+  h3= book.author
+  h2= book.genre
+  h3= book.year
+  a(href="../") &larr; Back 
+  | | 
+  a(href="/books/" + book.id + "/edit") Edit Book details 
+  | | 
+  a(href="/books/" + book.id + "/delete") Delete Book

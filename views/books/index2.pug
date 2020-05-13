@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title Moukim's Library
+    link(href='/stylesheets/style.css', rel='stylesheet')
+  body
+    h1 Moukim's Library
+    form(action="/books/search",method="post" )
+      div( style="margin-left:50%")
+        input( id="query" type="text",placeholder="Search ..." name="query" )
+        input(type="submit",value="Search" style="margin-right:-400px")
+
+    p
+      a.button(href='/books/new') Create New Book
+    table(style="margin-bottom:50px")
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year
+        each book in books 
+          tbody
+            br      
+            tr
+
+              td 
+                a(href='../books/'+book.id)= book.title 
+              td= book.author
+              td= book.genre
+              td= book.year
+  if(error)
+     h1(style="color:red") #{error.message}
+     a(href="/") Back ▲

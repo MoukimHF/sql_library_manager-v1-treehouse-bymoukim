@@ -1,0 +1,9 @@
+p.by-line
+if(book.author==false)
+  span#anon(style="font-weight:bold;") annonymous
+  |  | 
+  = book.publishedAt()
+else
+  = book.author
+  |  | 
+  = book.publishedAt()

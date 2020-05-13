@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title Moukim's Library
+    link(href='/stylesheets/style.css', rel='stylesheet')
+  body
+    h1 Moukim's Library
+    form(action="/books/search",method="post" )
+      div( style="margin-left:50%")
+        input( id="query" type="text",placeholder="Search ..." name="query" )
+        input(type="submit",value="Search" style="margin-right:-400px")
+
+    p(style="margin-left:60px;margin-top:100px")
+      a.button(href='/books/new') Create New Book
+    table(style="margin-top:50px;width:800px;margin-bottom:100px;")
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year
+        ul
+        each book in bookss
+          tbody
+             
+            tr
+              td 
+                a(href='./'+book.id)= book.title 
+              td= book.author
+              td= book.genre
+              td= book.year
+  ul.pagination
+    each number in arrayCount
+      li(style="display:inline")
+        a(class="pagination-button",href=`?page=${number+1}&limit=${limit}`)=number+1
+
+  if(error)
+     h1(style="color:red") #{error.message}

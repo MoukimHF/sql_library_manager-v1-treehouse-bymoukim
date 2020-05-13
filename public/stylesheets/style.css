@@ -1,6 +1,7 @@
 body {
-  padding: 10px 50px 50px;
-  font: 18px "Garamond", serif;
+  padding: 50px 50px 50px;
+  font: 24px , serif;
+  background-color: rgb(172, 232, 229);
 }
 
 a {
@@ -95,3 +96,58 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
+/* .pagination{
+
+}
+
+ 
+  .pagination li{
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 25px;
+    border-bottom: burlywood 1px solid;
+    } */
+    .pagination {
+      display: inline;
+      width: 75%;
+      margin: 1em auto;
+      text-align: center;
+      margin-left: 50px;
+      &:after {
+        content: '';
+        clear: both;
+      }
+    }
+    
+    .pagination-button {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid #e0e0e0;  
+      background-color: #eee;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+      
+      &:hover {
+        background-color: #ddd;
+        color: #3366cc;
+      }
+      
+      &.active {
+        background-color: #bbb;
+        border-color: #bbb;
+        color: #3366cc;
+      }
+      
+      $border-radius: 18px;  
+      
+      &:first-of-type {
+        border-radius: $border-radius 0 0 $border-radius;
+      }
+    
+      &:last-of-type {
+        border-radius: 0 $border-radius $border-radius 0;
+      }
+    }
+    

@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "A simple blog application",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.17.1",
+    "express-paginate": "^1.0.0",
+    "http-errors": "^1.6.3",
+    "moment": "^2.24.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.2",
+    "pagination": "^0.4.6",
+    "pug": "^2.0.4",
+    "sequelize": "^5.18.4",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.0"
+  }
+}
