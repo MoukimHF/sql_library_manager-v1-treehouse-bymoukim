@@ -1,0 +1,15 @@
+
+# Full Stack JavaScript Techdegree  - SQL LIBRARY MANAGER By Moukim Hfaiedh
+
+>> npm install to install all dependencies 
+>> npm start serves the app on port 5000
+
+ -data will be stored in library.db you can open it with your favorite sql software i am using SQL LITE DB browser
+ - by default the app will serve the books by limit of 5 
+ - search bar integrated so you can search by title,author,genre,year
+ -pagination included
+ -error handling working perfectly for not found page and no book page and even for no search results 
+ -custom design styles
+ 
+
+
