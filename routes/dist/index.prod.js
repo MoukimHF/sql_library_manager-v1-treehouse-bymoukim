@@ -1,1 +1,1 @@
-"use strict";var express=require("express"),router=express.Router();router.get("/",function(e,r,t){r.redirect("books/?page=1&limit=5")}),module.exports=router;
+"use strict";var express=require("express"),router=express.Router();router.get("/",function(e,r,s){r.redirect("/books/")}),module.exports=router;

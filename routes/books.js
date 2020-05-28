@@ -35,7 +35,26 @@ router.get('/', asyncHandler(async (req, res) => {
   )
   res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
 }));
+router.get('/', asyncHandler(async (req, res) => {
+  const page = req.query.page;
+  const limit = req.query.limit;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit ;
 
+  let books=await Book.findAll();
+  const pageCount = books.length / limit ; 
+  const arrayCount = []
+  for(let i=0;i<pageCount;i++)
+  {
+  arrayCount.push(i);
+  }
+   const bookss=await Book.findAll(
+    {offset: startIndex || 0,
+    limit: limit || 50,
+  order:[['createdAt', 'DESC']]}
+  )
+  res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
+}));
 
 
 /* Create a new book form. */
@@ -66,7 +85,7 @@ router.get("/:id/edit", asyncHandler(async(req, res) => {
  res.render("books/update-book", { book, title: "Edit book" });
   }
   else {
-    res.render('/notFoundError');
+    res.render('notFoundError');
  
   }
 }));
@@ -127,17 +146,17 @@ const books=await Book.findAll({
   where: {
     [Op.or]:{
    title: {
-    [Op.startsWith]: query
+    [Op.like]: '%'+query+'%'
    }
    ,
    author:{
-    [Op.startsWith]: query
+    [Op.like]: '%'+query+'%'
    },
    genre:{
-    [Op.startsWith]: query
+    [Op.like]: '%'+query+'%'
    },
    year:{
-    [Op.startsWith]: query
+    [Op.like]: '%'+query+'%'
    }
   }
 }});
