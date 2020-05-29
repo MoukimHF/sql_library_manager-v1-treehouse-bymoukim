@@ -35,27 +35,6 @@ router.get('/', asyncHandler(async (req, res) => {
   )
   res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
 }));
-router.get('/', asyncHandler(async (req, res) => {
-  const page = req.query.page;
-  const limit = req.query.limit;
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit ;
-
-  let books=await Book.findAll();
-  const pageCount = books.length / limit ; 
-  const arrayCount = []
-  for(let i=0;i<pageCount;i++)
-  {
-  arrayCount.push(i);
-  }
-   const bookss=await Book.findAll(
-    {offset: startIndex || 0,
-    limit: limit || 50,
-  order:[['createdAt', 'DESC']]}
-  )
-  res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
-}));
-
 
 /* Create a new book form. */
 router.get('/new', (req, res) => {
@@ -133,16 +112,20 @@ router.get("/:id/delete", asyncHandler(async (req, res) => {
   res.render('notFoundError');
 }
 }));
-router.get("/",asyncHandler(async(req,res)=>{
-
-}));
 
 router.post("/search", asyncHandler(async(req,res)=>{
+  res.redirect("/books/search/?page=1&limit=5");
   const  query = req.body.query;
  const path=req.path ; 
  const Op = Sequelize.Op
-
-const books=await Book.findAll({
+ const page = req.query.page;
+ const limit = req.query.limit;
+ const startIndex = (page - 1) * limit;
+ const endIndex = page * limit ;
+ console.log("1 : "+req.body.query);
+ console.log("2 : "+req.query.page);
+ console.log("3 "+req)
+const bookss=await Book.findAll({
   where: {
     [Op.or]:{
    title: {
@@ -159,19 +142,36 @@ const books=await Book.findAll({
     [Op.like]: '%'+query+'%'
    }
   }
-}});
-if(path.includes('search') && books.length>0){
-  res.render("books/index2", { books, title: "moukim's library!"});
+ 
+} ,
+offset: startIndex || 0,
+  limit: limit || 50,
+order:[['createdAt', 'DESC']]
+
+});
+const pageCount = bookss.length / limit ; 
+const arrayCount = []
+if(path.includes('search') ){
+  if(bookss.length>0){
+   
+  for(let i=0;i<pageCount;i++)
+  {
+  arrayCount.push(i);
+  }
+  console.log("sayeb zebi ya khra")
+  console.log(pageCount);
+  res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
 }
-else if(books.length>0){
-  res.render("books/index", { books, title: "moukim's library!"});
-} else{
+else{
   const arrayCounts = []
  try{
     throw new Error('no search results')}
  catch(error){ 
-   res.render('books/index',{bookss:books,arrayCount:arrayCounts, error});}
+   res.render('books/index2',{books:bookss,arrayCount:arrayCounts, error});}
 }
+
+}
+
 }));
 
 
