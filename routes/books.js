@@ -15,11 +15,10 @@ function asyncHandler(cb){
 
 
 /* GET books listing. */
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res,next) => {
   const page = req.query.page;
   const limit = req.query.limit;
   const startIndex = (page - 1) * limit;
-  const endIndex = page * limit ;
 
   let books=await Book.findAll();
   const pageCount = books.length / limit ; 
@@ -32,7 +31,8 @@ router.get('/', asyncHandler(async (req, res) => {
     {offset: startIndex || 0,
     limit: limit || 50,
   order:[['createdAt', 'DESC']]}
-  )
+  ) 
+
   res.render("books/index", { bookss, title: "moukim's library!",page,limit,arrayCount});
 }));
 
@@ -114,7 +114,6 @@ router.get("/:id/delete", asyncHandler(async (req, res) => {
 }));
 
 router.post("/search", asyncHandler(async(req,res)=>{
-  res.redirect("/books/search/?page=1&limit=5");
   const  query = req.body.query;
  const path=req.path ; 
  const Op = Sequelize.Op
@@ -123,8 +122,8 @@ router.post("/search", asyncHandler(async(req,res)=>{
  const startIndex = (page - 1) * limit;
  const endIndex = page * limit ;
  console.log("1 : "+req.body.query);
+ console.log("path : "+req.path);
  console.log("2 : "+req.query.page);
- console.log("3 "+req)
 const bookss=await Book.findAll({
   where: {
     [Op.or]:{

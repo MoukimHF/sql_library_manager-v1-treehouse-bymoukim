@@ -96,58 +96,122 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
-/* .pagination{
-
+body{
+  background-color: #e1f1f6;
+  font-family: Helvetica, sans-serif;
+  color: #222;
 }
 
+.page{
+  margin: 50px auto;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 50px;
+}
+
+.page-header{
+  margin-bottom: 20px;
+}
+  .page-header h2{
+    float: left;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .page-header .student-search{
+    float: right;
+  }
+
+    .page-header .student-search input{
+      border-radius: 5px;
+      border: 1px solid #eaeaea;
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+
+    .page-header .student-search button{
+      border-radius: 5px;
+      border: 1px solid #eaeaea;
+      padding: 8px 15px;
+      font-size: 14px;
+      background-color: #4ba6c3;
+      color: #fff
+    }
+
+.student-list{}
+
+  .student-item{
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+    .student-details{
+      width: 50%;
+      float: left;
+    }
+
+      .student-details .avatar{
+        width: 40px;
+        height: auto;
+        border-radius: 20px;
+        float: left;
+        margin-right: 14px
+      }
+
+      .student-details h3{
+        margin: 4px 0 2px 0;
+        font-weight: bold;
+        color: #4ba6c3;
+      }
+
+      .student-details .email{
+        color: #888;
+        font-size: 14px;
+      }
+
+
+    .joined-details{
+      width: 50%;
+      float: left;
+      text-align: right;
+    }
+
+      .joined-details .date{
+        margin-top: 15px;
+        display: block;
+        font-size: 14px;
+        color: #999;
+      }
+
+  .student-item:last-child{
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+
+.pagination{
+  margin: 40px 0 0 0;
+  text-align: center;
+}
  
   .pagination li{
-    display: inline-block;
-    cursor: pointer;
-    margin-left: 15px;
-    font-size: 25px;
-    border-bottom: burlywood 1px solid;
-    } */
-    .pagination {
-      display: inline;
-      width: 75%;
-      margin: 1em auto;
-      text-align: center;
-      margin-left: 50px;
-      &:after {
-        content: '';
-        clear: both;
-      }
+    display: inline;
+  }
+
+    .pagination li a{
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+      padding: 3px 8px;
+      text-decoration: none;
+      color: #4ba6c3;
     }
-    
-    .pagination-button {
-      display: inline-block;
-      padding: 5px 10px;
-      border: 1px solid #e0e0e0;  
-      background-color: #eee;
-      color: #333;
-      cursor: pointer;
-      transition: background 0.1s, color 0.1s;
-      
-      &:hover {
-        background-color: #ddd;
-        color: #3366cc;
-      }
-      
-      &.active {
-        background-color: #bbb;
-        border-color: #bbb;
-        color: #3366cc;
-      }
-      
-      $border-radius: 18px;  
-      
-      &:first-of-type {
-        border-radius: $border-radius 0 0 $border-radius;
-      }
-    
-      &:last-of-type {
-        border-radius: 0 $border-radius $border-radius 0;
-      }
+
+    .pagination li a.active,
+    .pagination li a:hover{
+      background-color: #4ba6c3;
+      color: #fff;
     }
-    

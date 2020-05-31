@@ -42,8 +42,8 @@ function asyncHandler(cb) {
 /* GET books listing. */
 
 
-router.get('/', asyncHandler(function _callee2(req, res) {
-  var page, limit, startIndex, endIndex, books, pageCount, arrayCount, i, bookss;
+router.get('/', asyncHandler(function _callee2(req, res, next) {
+  var page, limit, startIndex, books, pageCount, arrayCount, i, bookss;
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -51,11 +51,10 @@ router.get('/', asyncHandler(function _callee2(req, res) {
           page = req.query.page;
           limit = req.query.limit;
           startIndex = (page - 1) * limit;
-          endIndex = page * limit;
-          _context2.next = 6;
+          _context2.next = 5;
           return regeneratorRuntime.awrap(Book.findAll());
 
-        case 6:
+        case 5:
           books = _context2.sent;
           pageCount = books.length / limit;
           arrayCount = [];
@@ -64,14 +63,14 @@ router.get('/', asyncHandler(function _callee2(req, res) {
             arrayCount.push(i);
           }
 
-          _context2.next = 12;
+          _context2.next = 11;
           return regeneratorRuntime.awrap(Book.findAll({
             offset: startIndex || 0,
             limit: limit || 50,
             order: [['createdAt', 'DESC']]
           }));
 
-        case 12:
+        case 11:
           bookss = _context2.sent;
           res.render("books/index", {
             bookss: bookss,
@@ -81,7 +80,7 @@ router.get('/', asyncHandler(function _callee2(req, res) {
             arrayCount: arrayCount
           });
 
-        case 14:
+        case 13:
         case "end":
           return _context2.stop();
       }
@@ -311,7 +310,6 @@ router.post("/search", asyncHandler(function _callee8(req, res) {
     while (1) {
       switch (_context8.prev = _context8.next) {
         case 0:
-          res.redirect("/books/search/?page=1&limit=5");
           query = req.body.query;
           path = req.path;
           Op = Sequelize.Op;
@@ -320,9 +318,9 @@ router.post("/search", asyncHandler(function _callee8(req, res) {
           startIndex = (page - 1) * limit;
           endIndex = page * limit;
           console.log("1 : " + req.body.query);
+          console.log("path : " + req.path);
           console.log("2 : " + req.query.page);
-          console.log("3 " + req);
-          _context8.next = 13;
+          _context8.next = 12;
           return regeneratorRuntime.awrap(Book.findAll({
             where: _defineProperty({}, Op.or, {
               title: _defineProperty({}, Op.like, '%' + query + '%'),
@@ -335,18 +333,18 @@ router.post("/search", asyncHandler(function _callee8(req, res) {
             order: [['createdAt', 'DESC']]
           }));
 
-        case 13:
+        case 12:
           bookss = _context8.sent;
           pageCount = bookss.length / limit;
           arrayCount = [];
 
           if (!path.includes('search')) {
-            _context8.next = 32;
+            _context8.next = 31;
             break;
           }
 
           if (!(bookss.length > 0)) {
-            _context8.next = 24;
+            _context8.next = 23;
             break;
           }
 
@@ -363,29 +361,29 @@ router.post("/search", asyncHandler(function _callee8(req, res) {
             limit: limit,
             arrayCount: arrayCount
           });
-          _context8.next = 32;
+          _context8.next = 31;
           break;
 
-        case 24:
+        case 23:
           arrayCounts = [];
-          _context8.prev = 25;
+          _context8.prev = 24;
           throw new Error('no search results');
 
-        case 29:
-          _context8.prev = 29;
-          _context8.t0 = _context8["catch"](25);
+        case 28:
+          _context8.prev = 28;
+          _context8.t0 = _context8["catch"](24);
           res.render('books/index2', {
             books: bookss,
             arrayCount: arrayCounts,
             error: _context8.t0
           });
 
-        case 32:
+        case 31:
         case "end":
           return _context8.stop();
       }
     }
-  }, null, null, [[25, 29]]);
+  }, null, null, [[24, 28]]);
 }));
 /* Delete individual book. */
 

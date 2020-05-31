@@ -19,20 +19,16 @@ html
           th Author
           th Genre
           th Year
-        ul
         each book in bookss
           tbody
-             
+            
             tr
               td 
                 a(href='./'+book.id)= book.title 
               td= book.author
               td= book.genre
               td= book.year
-  ul.pagination
-    each number in arrayCount
-      li(style="display:inline")
-        a(class="pagination-button",href=`?page=${number+1}&limit=${limit}`)=number+1
-
+  script(src='/js/scripts.js', type="text/javascript")
   if(error)
      h1(style="color:red") #{error.message}
+        
